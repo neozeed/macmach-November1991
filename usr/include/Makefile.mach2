@@ -1,0 +1,227 @@
+# Makefile for /usr/include, Mach 2.5 version.
+
+DESTDIR=
+
+MIGFLAGS= -I${DESTDIR}/usr/include
+
+STDDIRS=arpa protocols cmu servers
+STDFILES= arpa/telnet.h arpa/bootp.h arpa/inet.h arpa/ftp.h arpa/tftp.h \
+	arpa/nameser.h protocols/rwhod.h protocols/timed.h protocols/talkd.h \
+	protocols/routed.h protocols/dumprestore.h cmu/c.h cmu/del.h \
+	cmu/access.h cmu/acc.h cmu/ci.h cmu/libc.h cmu/ttyloc.h fstab.h \
+	memory.h regexp.h struct.h ar.h stab.h grp.h pwd.h dbm.h mp.h pcc.h \
+	vfont.h resolv.h fcntl.h ttyent.h nlist.h ndbm.h sgtty.h a.out.h \
+	utmp.h varargs.h math.h time.h stdio.h ctype.h netdb.h setjmp.h \
+	lastlog.h curses.h mntent.h assert.h tzfile.h disktab.h \
+	servers/emdefs.h servers/env_mgr.defs servers/errorlib.h \
+	servers/netname.defs servers/netname_defs.h servers/service.defs \
+	sysexits.h ranlib.h mtab.h string.h strings.h mach_tahoe_fs.h
+
+VMUNIX=../../vmunix.mach2/sys
+VMUNIXDIRS=sys net netimp netinet netns mach mach_debug mach_debug/ca \
+	mach/mac2 mach/mips mach/mmax mach/sqt mach/sun3 mach/sun4 \
+	mach/vax mach/ca mach/i386
+VMUNIXFILES=mach/boolean.h mach/ca/boolean.h mach/ca/exception.h \
+	mach/ca/float.h mach/ca/kern_return.h mach/ca/syscall_sw.h \
+	mach/ca/thread_status.h mach/ca/vm_param.h mach/ca/vm_types.h \
+	mach/device_types.h mach/error.h mach/exception.h mach/host_info.h \
+	mach/i386/boolean.h mach/i386/exception.h mach/i386/kern_return.h \
+	mach/i386/syscall_sw.h mach/i386/thread_status.h \
+	mach/i386/vm_param.h mach/i386/vm_types.h mach/kern_return.h \
+	mach/kernel_event.h mach/mac2/boolean.h mach/mac2/exception.h \
+	mach/mac2/frame.h mach/mac2/kern_return.h mach/mac2/reg.h \
+	mach/mac2/syscall_sw.h mach/mac2/thread_status.h \
+	mach/mac2/vm_param.h mach/mac2/vm_types.h mach/mach_extra.h \
+	mach/mach_param.h mach/mach_traps.h mach/mach_types.h mach/machine.h \
+	mach/memory_object.h mach/message.h mach/mig_errors.h \
+	mach/mips/boolean.h mach/mips/exception.h mach/mips/kern_return.h \
+	mach/mips/mips_instruction.h mach/mips/syscall_sw.h \
+	mach/mips/thread_status.h mach/mips/vm_param.h mach/mips/vm_types.h \
+	mach/mmax/boolean.h mach/mmax/exception.h mach/mmax/kern_return.h \
+	mach/mmax/syscall_sw.h mach/mmax/thread_status.h \
+	mach/mmax/vm_param.h mach/mmax/vm_types.h mach/msg_type.h \
+	mach/netport.h mach/notify.h mach/policy.h mach/port.h \
+	mach/processor_info.h mach/sqt/boolean.h mach/sqt/kern_return.h \
+	mach/sqt/syscall_sw.h mach/sqt/thread_status.h mach/sqt/vm_param.h \
+	mach/sqt/vm_types.h mach/std_types.h mach/sun3/boolean.h \
+	mach/sun3/exception.h mach/sun3/kern_return.h mach/sun3/reg.h \
+	mach/sun3/syscall_sw.h mach/sun3/thread_status.h \
+	mach/sun3/vm_param.h mach/sun3/vm_types.h mach/sun4/boolean.h \
+	mach/sun4/exception.h mach/sun4/kern_return.h mach/sun4/syscall_sw.h \
+	mach/sun4/thread_status.h mach/sun4/vm_param.h mach/sun4/vm_types.h \
+	mach/syscall_sw.h mach/task_info.h mach/task_special_ports.h \
+	mach/thread_info.h mach/thread_special_ports.h mach/thread_status.h \
+	mach/thread_switch.h mach/time_value.h mach/vax/boolean.h \
+	mach/vax/exception.h mach/vax/kern_return.h mach/vax/syscall_sw.h \
+	mach/vax/thread_status.h mach/vax/vm_param.h mach/vax/vm_types.h \
+	mach/vm_attributes.h mach/vm_inherit.h mach/vm_param.h \
+	mach/vm_prot.h mach/vm_statistics.h mach_debug/ca/fpa_counters.h \
+	mach_debug/ca/mach_debug_ca_types.h mach_debug/callout_statistics.h \
+	mach_debug/ipc_statistics.h mach_debug/mach_debug_types.h \
+	mach_debug/zone_info.h net/af.h net/dli_var.h net/if.h net/if_arp.h \
+	net/netisr.h net/raw_cb.h net/route.h netimp/if_imp.h \
+	netimp/if_imphost.h netinet/agent_var.h netinet/bbn.h netinet/esp.h \
+	netinet/esp_cache.h netinet/esp_ip.h netinet/esp_key.h \
+	netinet/esp_probe.h netinet/esp_var.h netinet/group.h \
+	netinet/icmp_var.h netinet/if_ether.h netinet/if_lan.h \
+	netinet/igmp.h netinet/igmp_user.h netinet/igmp_var.h netinet/in.h \
+	netinet/in_pcb.h netinet/in_systm.h netinet/in_var.h netinet/ip.h \
+	netinet/ip_icmp.h netinet/ip_mroute.h netinet/ip_var.h \
+	netinet/pcbheadsw.h netinet/tcp.h netinet/tcp_debug.h \
+	netinet/tcp_fsm.h netinet/tcp_seq.h netinet/tcp_timer.h \
+	netinet/tcp_var.h netinet/tcpip.h netinet/udp.h netinet/udp_var.h \
+	netinet/vmtp.h netinet/vmtp_buf.h netinet/vmtp_cksum.h \
+	netinet/vmtp_ether.h netinet/vmtp_group.h netinet/vmtp_ip.h \
+	netinet/vmtp_kdc.h netinet/vmtp_manager.h netinet/vmtp_send.h \
+	netinet/vmtp_so.h netinet/vmtp_sys.h netinet/vmtp_var.h netns/idp.h \
+	netns/idp_var.h netns/ns.h netns/ns_error.h netns/ns_if.h \
+	netns/ns_pcb.h netns/sp.h netns/spidp.h netns/spp_debug.h \
+	netns/spp_timer.h netns/spp_var.h sys/acct.h sys/bkmac.h sys/buf.h \
+	sys/callout.h sys/clist.h sys/cmap.h sys/cmupty.h sys/conf.h \
+	sys/dir.h sys/disklabel.h sys/dk.h sys/dkbad.h sys/dkstat.h \
+	sys/domain.h sys/enet.h sys/errno.h sys/exec.h sys/fe.h sys/file.h \
+	sys/filsys.h sys/fpsconf.h sys/fpsreg.h sys/fs.h sys/gprof.h \
+	sys/ieeefp.h sys/ild.h sys/inode.h sys/ioctl.h sys/jioctl.h \
+	sys/kernel.h sys/map.h sys/mbuf.h sys/mman.h sys/mount.h \
+	sys/msgbuf.h sys/mtio.h sys/namei.h sys/param.h sys/proc.h \
+	sys/protosw.h sys/ptrace.h sys/quota.h sys/reboot.h sys/resource.h \
+	sys/signal.h sys/socket.h sys/socketvar.h sys/stat.h sys/syscall.h \
+	sys/syslog.h sys/systm.h sys/table.h sys/tablet.h sys/time.h \
+	sys/timeb.h sys/times.h sys/trace.h sys/tty.h sys/ttychars.h \
+	sys/ttydev.h sys/ttyloc.h sys/types.h sys/uio.h sys/un.h sys/unpcb.h \
+	sys/user.h sys/vadvise.h sys/vcmd.h sys/version.h sys/viceioctl.h \
+	sys/vicermt.h sys/vlimit.h sys/vm.h sys/vmmac.h sys/vmparam.h \
+	sys/vsio.h sys/vtimes.h sys/wait.h \
+	mach/device.defs mach/device_types.defs mach/exc.defs mach/mach.defs \
+	mach/mach_host.defs mach/mach_types.defs mach/memory_object.defs \
+	mach/memory_object_default.defs mach/monitor.defs \
+	mach/std_types.defs mach_debug/ca/mach_debug_ca.defs \
+	mach_debug/ca/mach_debug_ca_types.defs mach_debug/mach_debug.defs \
+	mach_debug/mach_debug_types.defs 
+
+LIBTHREADS=../lib/libthreads.mach2
+LIBTHREADSFILES= cthreads.h
+
+LIBMACH=../lib/libmach.mach2
+LIBMACHFILES= mach.h mach_error.h mach_init.h mach_exception.h exception_all.h
+
+MIG_SERVERS= netname.h env_mgr.h service.h
+MIG_MACH= mach_interface.h
+MIGSTUFF= ${MIG_SERVERS} ${MIG_MACH}
+
+MAC2DIRS=mac2 mac2dev mac2os
+MAC2FILES= mac2/macpager.h mac2/reg.h mac2/pmap_kmap.h mac2/ast.h \
+	mac2/slots.h mac2/asm.h mac2/ptrace.h mac2/macpager_hash.h \
+	mac2/cpu.h mac2/act.h mac2/psl.h mac2/machparam.h mac2/pmap.h\
+	mac2/thread.h mac2/pcb.h mac2/xpr.h mac2/call_frame.h \
+	mac2/vm_tuning.h mac2/endian.h mac2/trap.h mac2/clock.h \
+	mac2/vmparam.h mac2dev/font.h mac2dev/sony.h mac2dev/video.h \
+	mac2dev/adb.h mac2dev/mscsi.h mac2os/Globals.h mac2os/ROMDefs.h \
+	mac2os/SCSI.h mac2os/Traps.h mac2os/Ethernet.h mac2os/Errors.h \
+	mac2os/Video.h mac2os/Files.h mac2os/Retrace.h mac2os/DeskBus.h \
+	mac2os/Types.h mac2os/Slots.h 
+
+all:	FRC
+
+install: std mach mig ${target_machine} lib links
+	chown -R bin.bin ${DESTDIR}/usr/include
+	chmod -R a-w ${DESTDIR}/usr/include
+
+links:	FRC
+	@rm -f ${DESTDIR}/usr/include/errno.h;
+	ln -s sys/errno.h ${DESTDIR}/usr/include/errno.h
+	@rm -f ${DESTDIR}/usr/include/signal.h
+	ln -s sys/signal.h ${DESTDIR}/usr/include/signal.h
+	@rm -f ${DESTDIR}/usr/include/syslog.h
+	ln -s sys/syslog.h ${DESTDIR}/usr/include/syslog.h
+	@rm -f ${DESTDIR}/usr/include/machine
+	ln -s ${target_machine} ${DESTDIR}/usr/include/machine
+	@rm -f ${DESTDIR}/usr/include/mach/machine
+	ln -s ${target_machine} ${DESTDIR}/usr/include/mach/machine
+	@rm -f ${DESTDIR}/usr/include/mach/mach.h
+	ln -s ../mach.h ${DESTDIR}/usr/include/mach/mach.h
+	@rm -f ${DESTDIR}/usr/include/sys/message.h
+	ln -s ../mach/message.h ${DESTDIR}/usr/include/sys/message.h
+	@rm -f ${DESTDIR}/usr/include/sys/kern_return.h
+	ln -s ../mach/kern_return.h ${DESTDIR}/usr/include/sys/kern_return.h
+	@rm -f ${DESTDIR}/usr/include/mach_interface.h
+	ln -s mach/mach_interface.h ${DESTDIR}/usr/include/mach_interface.h
+	@rm -f ${DESTDIR}/usr/include/mig_errors.h
+	ln -s mach/mig_errors.h ${DESTDIR}/usr/include/mig_errors.h
+
+std:	${STDFILES}
+	-@[ -d ${DESTDIR}/usr/include ] || mkdir ${DESTDIR}/usr/include
+	-@for i in ${STDDIRS}; do \
+	  [ -d ${DESTDIR}/usr/include/$$i ] || \
+	    mkdir ${DESTDIR}/usr/include/$$i; \
+	done
+	-@for i in ${STDFILES}; do \
+	  cmp -s $$i ${DESTDIR}/usr/include/$$i || { \
+	    echo "installing ${DESTDIR}/usr/include/$$i"; \
+	    install -c -m 444 $$i ${DESTDIR}/usr/include/$$i; }; \
+	done
+
+mach:	FRC
+	-@for i in ${VMUNIXDIRS}; do \
+	  [ -d ${DESTDIR}/usr/include/$$i ] || \
+	    mkdir ${DESTDIR}/usr/include/$$i; \
+	done
+	-@cd ${VMUNIX}; for i in ${VMUNIXFILES}; do \
+	  cmp -s $$i ${DESTDIR}/usr/include/$$i || { \
+	    echo "installing ${DESTDIR}/usr/include/$$i"; \
+	    install -c -m 444 $$i ${DESTDIR}/usr/include/$$i; }; \
+	done
+
+mig:	${MIGSTUFF}
+	-@for i in ${MIG_SERVERS}; do \
+	  cmp -s $$i ${DESTDIR}/usr/include/servers/$$i || { \
+	    echo "installing ${DESTDIR}/usr/include/servers/$$i"; \
+	    install -c -m 444 $$i ${DESTDIR}/usr/include/servers/$$i; }; \
+	done
+	-@for i in ${MIG_MACH}; do \
+	  cmp -s $$i ${DESTDIR}/usr/include/mach/$$i || { \
+	    echo "installing ${DESTDIR}/usr/include/mach_debug/$$i"; \
+	    install -c -m 444 $$i ${DESTDIR}/usr/include/mach/$$i; }; \
+	done
+
+lib:	FRC
+	-@cd ${LIBMACH}; for i in ${LIBMACHFILES}; do \
+	  cmp -s $$i ${DESTDIR}/usr/include/$$i || { \
+	    echo "installing ${DESTDIR}/usr/include/$$i"; \
+	    install -c -m 444 $$i ${DESTDIR}/usr/include/$$i; }; \
+	done
+	-@cd ${LIBTHREADS}; for i in ${LIBTHREADSFILES}; do \
+	  cmp -s $$i ${DESTDIR}/usr/include/$$i || { \
+	    echo "installing ${DESTDIR}/usr/include/$$i"; \
+	    install -c -m 444 $$i ${DESTDIR}/usr/include/$$i; }; \
+	done
+
+mac2:	FRC
+	-@for i in ${MAC2DIRS}; do \
+	  [ -d ${DESTDIR}/usr/include/$$i ] || \
+	    mkdir ${DESTDIR}/usr/include/$$i; \
+	done
+	-@cd ${VMUNIX}; for i in ${MAC2FILES}; do \
+	  cmp -s $$i ${DESTDIR}/usr/include/$$i || { \
+	    echo "installing ${DESTDIR}/usr/include/$$i"; \
+	    install -c -m 444 $$i ${DESTDIR}/usr/include/$$i; }; \
+	done
+
+mach_interface.h: ${VMUNIX}/mach/mach.defs
+	mig $? -header $@ -server /dev/null -user /dev/null
+
+service.h: servers/service.defs
+	mig $? -header $@ -server /dev/null -user /dev/null
+
+netname.h: servers/netname.defs
+	mig $? -header $@ -server /dev/null -user /dev/null
+
+env_mgr.h: servers/env_mgr.defs
+	mig $? -header $@ -server /dev/null -user /dev/null
+
+install.man: FRC
+
+clean:	FRC
+	rm -f ${MIGSTUFF}
+
+FRC:

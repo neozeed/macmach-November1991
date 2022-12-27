@@ -1,0 +1,1 @@
+../../bin/mig.mach2/type.c

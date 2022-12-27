@@ -1,0 +1,76 @@
+/* 
+ * Mach Operating System
+ * Copyright (c) 1991 Carnegie-Mellon University
+ * All rights reserved.  The CMU software License Agreement specifies
+ * the terms and conditions for use and redistribution.
+ */
+/*
+ * HISTORY
+ * $Log:	macserver.defs,v $
+ * Revision 2.2  91/09/12  16:49:10  bohman
+ * 	Created.
+ * 	[91/09/11  16:43:47  bohman]
+ * 
+ */
+
+/*
+ *	Apple Macintosh II Mach (macmach)
+ *
+ *	File: mac2extra/macserver.defs
+ *	Author: David E. Bohman II (CMU macmach)
+ */
+
+subsystem KernelServer macserver	11000;
+
+#include <mach/std_types.defs>
+#include <mach/mach_types.defs>
+
+serverprefix	macserver_;
+
+/*
+ * A temporary kernel IPC interface
+ * which allows the user mode macintosh
+ * emulator to be run as a U**X
+ * application.
+ */
+
+/*
+ * Return the memory objects which
+ * contain the memory copies.
+ */
+routine KernelObjects(
+	request_port		: mach_port_t;
+out	mac32bit		: boolean_t;
+out	low_object		: memory_object_t;
+out	low_offset		: vm_offset_t;
+out	low_size		: vm_size_t;
+out	high_object		: memory_object_t;
+out	high_offset		: vm_offset_t;
+out	high_size		: vm_size_t
+);
+
+/*
+ * Return the device master port.
+ * NOTE: This is a security hole.
+ */
+routine DeviceMaster(
+	request_port		: mach_port_t;
+out	master_port		: mach_port_t
+);
+
+/*
+ * Enables the emulation of A-line and
+ * TRAP1 traps for the current task.
+ */
+routine Emulate(
+	request_port		: mach_port_t
+);
+
+/*
+ * Return the host priv port.
+ * NOTE: This is a security hole.
+ */
+routine HostPriv(
+	request_port		: mach_port_t;
+out	host_priv		: mach_port_t
+);

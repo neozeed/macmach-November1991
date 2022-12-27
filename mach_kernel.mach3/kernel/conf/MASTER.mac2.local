@@ -1,0 +1,23 @@
+#
+# Mach Operating System
+# Copyright (c) 1986 Carnegie-Mellon University
+# All rights reserved.  The CMU software License Agreement
+# specifies the terms and conditions for use and redistribution.
+#  
+######################################################################
+#
+#  Master Macintosh II configuration file (see the master machine independent
+#  configuration file for a description of the file format).
+#
+######################################################################
+# HISTORY
+# $Log:	MASTER.mac2.local,v $
+# Revision 2.2  91/09/12  16:35:58  bohman
+# 	Created.
+# 	[91/09/11  16:57:20  bohman]
+# 
+######################################################################
+
+#
+#  Local options
+#
